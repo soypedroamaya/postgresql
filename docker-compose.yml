@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:13-alpine
+    volumes:
+      - type: bind
+        source: /Users/pedro/Code/backend/containers/postgresql/postgresql_bind_folder
+        target: /var/lib/postgresql/data
+      - type: bind
+        source: /Users/pedro/Code/backend/databases
+        target: /home/
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - DATABASE_HOST=127.0.0.1
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=root
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "soypedroamaya@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "pass"
+    ports:
+      - "80:80"
+    depends_on:
+      - postgres

@@ -1,0 +1,5 @@
+
+# quitaremos la carpeta donde estan montados los datos
+postgresql_bind_folder
+
+.DS_Store
